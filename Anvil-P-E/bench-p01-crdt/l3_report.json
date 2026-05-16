@@ -1,6 +1,6 @@
 {
   "l3_version": "anvil-2026-p01-L3-final",
-  "timestamp": "2026-05-16T08:31:58+0530",
+  "timestamp": "2026-05-16T09:30:14+0530",
   "adapter": "adapters.ourteam:Engine",
   "adapter_path": "/Users/devasishmishra/Developer/TechGenDM_Codes/Hackathons/Anvil_SST_2026/Project/Anvil-P-E/bench-p01-crdt/adapters/ourteam.py",
   "adapter_sha256": "c5a197fc022be8634d5541d5504f0acbf10b7198f3bb7172fe49f87e061a8882",
@@ -63,7 +63,7 @@
   "scenarios": [
     {
       "scenario": "reference",
-      "duration_ms": 1.3496250030584633,
+      "duration_ms": 1.4594169915653765,
       "snapshot_hashes": {
         "A": "fce34474d60c4f4250e6316dc0dbb77ff1f6ef53fc6a5795e70cb94af00a40e7",
         "B": "fce34474d60c4f4250e6316dc0dbb77ff1f6ef53fc6a5795e70cb94af00a40e7",
@@ -109,7 +109,7 @@
     },
     {
       "scenario": "cell-level-strict",
-      "duration_ms": 0.5113750230520964,
+      "duration_ms": 0.5085409502498806,
       "snapshot_hashes": {
         "A": "4a693cff379c667964eb7fc4d00779221999b627b42ed1049f13e6cdeeb87fed",
         "B": "4a693cff379c667964eb7fc4d00779221999b627b42ed1049f13e6cdeeb87fed",
@@ -145,7 +145,7 @@
     },
     {
       "scenario": "chaos:seed=1",
-      "duration_ms": 0.9193330188281834,
+      "duration_ms": 0.9279160294681787,
       "snapshot_hashes": {
         "A": "fce34474d60c4f4250e6316dc0dbb77ff1f6ef53fc6a5795e70cb94af00a40e7",
         "B": "fce34474d60c4f4250e6316dc0dbb77ff1f6ef53fc6a5795e70cb94af00a40e7",
@@ -181,7 +181,7 @@
     },
     {
       "scenario": "chaos:seed=2",
-      "duration_ms": 2.2135830367915332,
+      "duration_ms": 2.1175420260988176,
       "snapshot_hashes": {
         "A": "fce34474d60c4f4250e6316dc0dbb77ff1f6ef53fc6a5795e70cb94af00a40e7",
         "B": "fce34474d60c4f4250e6316dc0dbb77ff1f6ef53fc6a5795e70cb94af00a40e7",
@@ -217,7 +217,7 @@
     },
     {
       "scenario": "chaos:seed=3",
-      "duration_ms": 0.7890830165706575,
+      "duration_ms": 0.8522080024704337,
       "snapshot_hashes": {
         "A": "fce34474d60c4f4250e6316dc0dbb77ff1f6ef53fc6a5795e70cb94af00a40e7",
         "B": "fce34474d60c4f4250e6316dc0dbb77ff1f6ef53fc6a5795e70cb94af00a40e7",
@@ -253,7 +253,7 @@
     },
     {
       "scenario": "chaos:seed=5",
-      "duration_ms": 0.8025420247577131,
+      "duration_ms": 0.7840829784981906,
       "snapshot_hashes": {
         "A": "fce34474d60c4f4250e6316dc0dbb77ff1f6ef53fc6a5795e70cb94af00a40e7",
         "B": "fce34474d60c4f4250e6316dc0dbb77ff1f6ef53fc6a5795e70cb94af00a40e7",
@@ -289,7 +289,7 @@
     },
     {
       "scenario": "chaos:seed=8",
-      "duration_ms": 0.907749985344708,
+      "duration_ms": 0.851290998980403,
       "snapshot_hashes": {
         "A": "fce34474d60c4f4250e6316dc0dbb77ff1f6ef53fc6a5795e70cb94af00a40e7",
         "B": "fce34474d60c4f4250e6316dc0dbb77ff1f6ef53fc6a5795e70cb94af00a40e7",
@@ -325,7 +325,7 @@
     },
     {
       "scenario": "randomized:seed=101:peers=4:ops=80",
-      "duration_ms": 10.391167015768588,
+      "duration_ms": 9.890208020806313,
       "snapshot_hashes": {
         "P0": "901bc435a873d73e81097bde6c848b59e54f8a4f7217fbe64d9ab262f3d9ae60",
         "P1": "901bc435a873d73e81097bde6c848b59e54f8a4f7217fbe64d9ab262f3d9ae60",
@@ -387,7 +387,7 @@
     },
     {
       "scenario": "randomized:seed=202:peers=4:ops=80",
-      "duration_ms": 8.450041990727186,
+      "duration_ms": 8.764500031247735,
       "snapshot_hashes": {
         "P0": "8d32ac433b9923d72de4cbd24017d5f4c00d9fce53eeb2e87a3892c860f6e4fe",
         "P1": "8d32ac433b9923d72de4cbd24017d5f4c00d9fce53eeb2e87a3892c860f6e4fe",
@@ -449,7 +449,7 @@
     },
     {
       "scenario": "randomized:seed=303:peers=4:ops=80",
-      "duration_ms": 9.289250010624528,
+      "duration_ms": 9.487333009019494,
       "snapshot_hashes": {
         "P0": "7819f19a34d5e84453b90399184d6eddf2afc7297ae03503635dcbc83918c813",
         "P1": "7819f19a34d5e84453b90399184d6eddf2afc7297ae03503635dcbc83918c813",
@@ -511,7 +511,7 @@
     },
     {
       "scenario": "randomized:seed=404:peers=4:ops=80",
-      "duration_ms": 8.771958004217595,
+      "duration_ms": 8.927542017772794,
       "snapshot_hashes": {
         "P0": "9aebb5ff2caca31f67f76b849a85edeb36dd556b8ad1e70bcc54ed3f9f36949f",
         "P1": "9aebb5ff2caca31f67f76b849a85edeb36dd556b8ad1e70bcc54ed3f9f36949f",
@@ -573,7 +573,7 @@
     },
     {
       "scenario": "randomized:seed=505:peers=4:ops=80",
-      "duration_ms": 8.931999967899173,
+      "duration_ms": 9.254375007003546,
       "snapshot_hashes": {
         "P0": "ad5dbb882063d53064e403620b1546c70558f74c5dd5e7204faf02dc2a4d495b",
         "P1": "ad5dbb882063d53064e403620b1546c70558f74c5dd5e7204faf02dc2a4d495b",
@@ -635,7 +635,7 @@
     },
     {
       "scenario": "randomized:seed=606:peers=4:ops=80",
-      "duration_ms": 8.966499997768551,
+      "duration_ms": 8.83362500462681,
       "snapshot_hashes": {
         "P0": "fb3b4758590ef363260b913c31dab881b4af1bf1d6fb6166e909ea2168773601",
         "P1": "fb3b4758590ef363260b913c31dab881b4af1bf1d6fb6166e909ea2168773601",
@@ -697,7 +697,7 @@
     },
     {
       "scenario": "randomized:seed=707:peers=4:ops=80",
-      "duration_ms": 8.974666998255998,
+      "duration_ms": 9.147541015408933,
       "snapshot_hashes": {
         "P0": "323c0443afc43e2f163c014d059124ca978f5d75d49420c744763edaad14c4fd",
         "P1": "323c0443afc43e2f163c014d059124ca978f5d75d49420c744763edaad14c4fd",
@@ -759,7 +759,7 @@
     },
     {
       "scenario": "randomized:seed=808:peers=4:ops=80",
-      "duration_ms": 9.125167038291693,
+      "duration_ms": 9.140792011749,
       "snapshot_hashes": {
         "P0": "a50d6a5e8b15559b0b6f057b869dadf06779ee880fb8aa9d1d450457ea2ed15f",
         "P1": "a50d6a5e8b15559b0b6f057b869dadf06779ee880fb8aa9d1d450457ea2ed15f",
@@ -821,7 +821,7 @@
     },
     {
       "scenario": "stretch:composite_uniqueness",
-      "duration_ms": 0.8561669965274632,
+      "duration_ms": 0.8542920113541186,
       "snapshot_hashes": {
         "A": "ef39bd50961c15486917f199834ec7bd00d087137e6b9b505b1e2ef7b1436072",
         "B": "ef39bd50961c15486917f199834ec7bd00d087137e6b9b505b1e2ef7b1436072",
@@ -876,7 +876,7 @@
     },
     {
       "scenario": "stretch:multi_level_fk",
-      "duration_ms": 1.434749981854111,
+      "duration_ms": 1.420999993570149,
       "snapshot_hashes": {
         "A": "098a1c8eb4b3e48253d5e41363faff93949b50b66e5c569d802344ad6484ef50",
         "B": "098a1c8eb4b3e48253d5e41363faff93949b50b66e5c569d802344ad6484ef50",
@@ -935,7 +935,7 @@
     },
     {
       "scenario": "stretch:high_density",
-      "duration_ms": 1.4347080141305923,
+      "duration_ms": 1.442458014935255,
       "snapshot_hashes": {
         "A": "cf5bc7341b148c6d2c52dfb94b6590c17bd3e60f90c11c17f39741c9515e8dff",
         "B": "cf5bc7341b148c6d2c52dfb94b6590c17bd3e60f90c11c17f39741c9515e8dff",
@@ -1014,7 +1014,7 @@
     },
     {
       "scenario": "stretch:long_run",
-      "duration_ms": 815.8747089910321,
+      "duration_ms": 829.2243750183843,
       "snapshot_hashes": {
         "P0": "7288267b6efd759e93c2cac2b7d19bfecc8f6b4df17e855bdf81f980be016a29",
         "P1": "7288267b6efd759e93c2cac2b7d19bfecc8f6b4df17e855bdf81f980be016a29",
@@ -5131,7 +5131,7 @@
     },
     {
       "scenario": "stretch:long_run",
-      "duration_ms": 880.5573330027983,
+      "duration_ms": 892.0799580519088,
       "snapshot_hashes": {
         "P0": "6fb85fc97a1766d5f86f00bb166f5ca72e868e73e5537f6dd3b43f691aff520e",
         "P1": "6fb85fc97a1766d5f86f00bb166f5ca72e868e73e5537f6dd3b43f691aff520e",
