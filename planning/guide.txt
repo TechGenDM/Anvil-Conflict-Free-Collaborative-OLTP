@@ -1,0 +1,83 @@
+@⁨Vivek Sarathe SST '29⁩ ❌ Where the Notion Plan is WRONG or MISLEADING (Fix These)
+1. OR-Set for Row Membership — Overcomplicated, Not Required
+Notion Plan says: Use OR-Set with "dots" (peer_id, seq) for row existence.
+
+Bench reality: The bench never checks OR-Set semantics directly. It only checks:
+
+Is the row in snapshot_state or not?
+Does the hash match?
+What you actually need: A simple tombstone: bool flag on each row. When deleted → tombstone = True. Never physically remove from dict. In snapshot_state, skip tombstoned rows. That's it. OR-Set is a valid theoretical model but adds implementation complexity you don't need in 12 hours.
+
+2. Cell-Level Merge — Notion Plan's Approach Has a Bug
+Notion Plan says: Multi-Value Register, keep all concurrent values in conflicts list, winner_value() sorts by string.
+
+Bench reality: assert_cell_level_merge checks:
+
+python
+Copy
+u1.get("name") == "Alice Cooper"   # A's update
+u1.get("email") == "alice@ex.org"  # B's update
+The actual problem: u1 is tombstoned (C deleted it). So assert_cell_level_merge passes vacuously — the bench code literally says "u1 absent (cascade) — vacuously preserved" for tombstone policy. Cell-level merge matters for randomized seeds where rows aren't deleted. For those, LWW with deterministic tiebreak (compare peer_id lexicographically) is sufficient and simpler than MVR.
+
+Fix: Use simple LWW per cell. Store (value, clock_dict) per cell. On merge, compare clocks. If concurrent, pick winner by min(peer_id). No conflicts list needed.
+
+3. Uniqueness — Notion Plan's Escrow is Wrong for This Bench
+Notion Plan says: EscrowLog class with claim(), merge(), resolve_all().
+
+Bench reality: The bench just calls assert_uniqueness_email(state) which checks:
+
+python
+Copy
+emails = [u.get("email") for u in users]
+len(emails) == len(set(emails))  # no duplicates in live rows
+What you actually need: After every sync(), scan all live rows in users, find duplicate emails, mark the loser unique_status = "rejected". No escrow log needed. Just a post-sync scan. The "escrow" concept is for the writeup defense — not a required data structure.
+
+4. snapshot_state Return Format — Critical Detail Notion Plan Misses
+Bench reality from assertions.py:
+
+python
+Copy
+o1 = next((o for o in orders if o["id"] == "o1"), None)
+user_ids = {u["id"] for u in users}
+ok = o1 is not None and o1.get("user_id") not in user_ids
+This means:
+
+orders table must appear in snapshot_state even though randomized tests don't write to it
+o1 must be present (tombstone policy)
+o1.user_id = "u1" must NOT be in the live users list (u1 is tombstoned → not in snapshot)
+The id field must be in every row dict
+Notion Plan misses: The id column must be included in every row dict returned by snapshot_state. The bench does u["id"] and o["id"] directly.
+
+5. Randomized Scenario — Notion Plan Misses the Idempotency Test
+Bench reality from harness.py:
+
+python
+Copy
+# After sync to quiescence:
+for a, b in tail[:len(peers)]:
+    adapter.sync(scoped[a], scoped[b])   # sync AGAIN
+hashes_after = {p: adapter.snapshot_hash(scoped[p]) for p in peers}
+idempotent = AssertionResult(
+    "idempotent-sync",
+    hashes == hashes_after,   # must be identical
+    ...
+)
+This is a separate scored axis. If your sync() is not truly idempotent (running it twice changes state), you fail this. Common cause: uniqueness resolution re-running and flipping winners on second sync. Fix: make winner selection deterministic and stable — same input always produces same output.
+
+6. Chaos Scenario — Notion Plan Doesn't Explain What It Actually Tests
+Bench reality from harness.py:
+
+python
+Copy
+canonical_hash = None
+for seed in seeds:
+    # run same OPERATIONS but with permuted sync order
+    for a, b in chaos.permute_sync_order(seed):
+        adapter.sync(scoped[a], scoped[b])
+    # check: does this seed's hash == canonical_hash?
+The chaos test runs the exact same operations as the reference scenario but reorders the sync calls. All seeds must produce the same final hash as the first seed. This tests order-invariance of your merge function. If your merge is truly commutative + associative, this passes automatically.
+
+🔑 The 3 Things Notion Plan Gets Right That Are Most Important
+Tombstone policy — correct choice, correct reasoning
+snapshot_state excludes tombstoned rows — correct
+Hash determinism via json.dumps(sort_keys=True) — correct

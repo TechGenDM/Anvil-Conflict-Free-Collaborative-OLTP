@@ -1,0 +1,93 @@
+{
+  "config": {
+    "K": 16,
+    "N": 64,
+    "noise_levels": [
+      0.5,
+      0.7,
+      0.8
+    ],
+    "n_per_level": 250,
+    "n_aniso": 16,
+    "seeds": [
+      9999,
+      31415,
+      27182,
+      16180,
+      11235
+    ]
+  },
+  "per_seed": [
+    {
+      "seed": 9999,
+      "agent_accuracy": 0.8266666666666667,
+      "baseline_accuracy": 0.836,
+      "delta": -0.009333333333333305,
+      "spread_baseline": 12.2452,
+      "spread_agent": 100.9621,
+      "spread_reduction": 0.1213,
+      "duration_s": 30.09
+    },
+    {
+      "seed": 31415,
+      "agent_accuracy": 0.8173333333333334,
+      "baseline_accuracy": 0.8133333333333334,
+      "delta": 0.0040000000000000036,
+      "spread_baseline": 12.5125,
+      "spread_agent": 93.0678,
+      "spread_reduction": 0.1344,
+      "duration_s": 37.3
+    },
+    {
+      "seed": 27182,
+      "agent_accuracy": 0.8573333333333333,
+      "baseline_accuracy": 0.856,
+      "delta": 0.0013333333333332975,
+      "spread_baseline": 12.3071,
+      "spread_agent": 84.3397,
+      "spread_reduction": 0.1459,
+      "duration_s": 29.33
+    },
+    {
+      "seed": 16180,
+      "agent_accuracy": 0.864,
+      "baseline_accuracy": 0.8653333333333333,
+      "delta": -0.0013333333333332975,
+      "spread_baseline": 12.4049,
+      "spread_agent": 103.7143,
+      "spread_reduction": 0.1196,
+      "duration_s": 29.15
+    },
+    {
+      "seed": 11235,
+      "agent_accuracy": 0.86,
+      "baseline_accuracy": 0.8666666666666667,
+      "delta": -0.00666666666666671,
+      "spread_baseline": 12.6714,
+      "spread_agent": 101.8046,
+      "spread_reduction": 0.1245,
+      "duration_s": 29.38
+    }
+  ],
+  "aggregated": {
+    "mean_delta": -0.002400000000000002,
+    "min_delta": -0.009333333333333305,
+    "mean_spread": 0.12913999999999998,
+    "min_spread": 0.1196,
+    "seeds": [
+      9999,
+      31415,
+      27182,
+      16180,
+      11235
+    ],
+    "n_seeds": 5
+  },
+  "score": {
+    "retrieval_pts": 0.0,
+    "anisotropy_pts": 0.0,
+    "code_quality_pts": "(manual, up to 10)",
+    "total_automated": 0.0,
+    "max_automated": 90.0
+  }
+}

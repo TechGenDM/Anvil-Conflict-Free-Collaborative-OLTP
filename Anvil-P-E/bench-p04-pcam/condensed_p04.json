@@ -1,0 +1,55 @@
+{
+  "config": {
+    "K": 16,
+    "N": 64,
+    "noise_levels": [
+      0.6,
+      0.75,
+      0.85
+    ],
+    "n_per_level": 250,
+    "n_aniso": 16,
+    "seeds": [
+      42
+    ],
+    "retrieval_full_at_delta": 0.08,
+    "anisotropy_full_at_factor": 5.0,
+    "dynamics_gate_fraction": 0.6
+  },
+  "per_seed": [
+    {
+      "seed": 42,
+      "direct_classify_acc": 0.828,
+      "baseline_acc": 0.7706666666666667,
+      "agent_acc": 0.7786666666666666,
+      "delta": 0.007999999999999896,
+      "dynamics_adds_value": false,
+      "baseline_spread": 237.78345469997836,
+      "agent_spread": 248.23574614409767,
+      "spread_reduction": 0.8323926073464,
+      "duration_s": 28.19
+    }
+  ],
+  "aggregated": {
+    "mean_delta": 0.007999999999999896,
+    "min_delta": 0.007999999999999896,
+    "mean_reduction": 0.8323926073464,
+    "min_reduction": 0.8323926073464,
+    "dynamics_gate_pass_rate": 0.0,
+    "seeds": [
+      42
+    ],
+    "n_seeds": 1
+  },
+  "score": {
+    "retrieval_pts": 7.0,
+    "anisotropy_pts": 0.0,
+    "code_quality_pts": "(manual, up to 10)",
+    "total_automated": 7.0,
+    "max_automated": 90.0,
+    "notes": [
+      "diagnostic: dynamics beat direct-classify on only 0% of seeds (informational, no penalty)",
+      "mean reduction <= 1.0 \u2014 precision is not improving the spread"
+    ]
+  }
+}

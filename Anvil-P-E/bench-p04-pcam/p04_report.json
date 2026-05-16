@@ -1,0 +1,57 @@
+{
+  "config": {
+    "K": 16,
+    "N": 64,
+    "noise_levels": [
+      0.5,
+      0.7,
+      0.8
+    ],
+    "n_per_level": 250,
+    "n_aniso": 16,
+    "seeds": [
+      42,
+      101
+    ]
+  },
+  "per_seed": [
+    {
+      "seed": 42,
+      "agent_accuracy": 0.8733333333333333,
+      "baseline_accuracy": 0.8733333333333333,
+      "delta": 0.0,
+      "spread_baseline": 12.1652,
+      "spread_agent": 12.1652,
+      "spread_reduction": 1.0,
+      "duration_s": 22.25
+    },
+    {
+      "seed": 101,
+      "agent_accuracy": 0.788,
+      "baseline_accuracy": 0.788,
+      "delta": 0.0,
+      "spread_baseline": 12.3149,
+      "spread_agent": 12.3149,
+      "spread_reduction": 1.0,
+      "duration_s": 27.73
+    }
+  ],
+  "aggregated": {
+    "mean_delta": 0.0,
+    "min_delta": 0.0,
+    "mean_spread": 1.0,
+    "min_spread": 1.0,
+    "seeds": [
+      42,
+      101
+    ],
+    "n_seeds": 2
+  },
+  "score": {
+    "retrieval_pts": 0.0,
+    "anisotropy_pts": 0.0,
+    "code_quality_pts": "(manual, up to 10)",
+    "total_automated": 0.0,
+    "max_automated": 90.0
+  }
+}

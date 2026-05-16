@@ -1,0 +1,758 @@
+{
+  "l3_version": "anvil-2026-p01-L3-final",
+  "timestamp": "2026-05-16T07:49:22+0530",
+  "adapter": "adapters.ourteam:Engine",
+  "adapter_path": "/Users/devasishmishra/Developer/TechGenDM_Codes/Hackathons/Anvil_SST_2026/Project/Anvil-P-E/bench-p01-crdt/adapters/ourteam.py",
+  "adapter_sha256": "c5a197fc022be8634d5541d5504f0acbf10b7198f3bb7172fe49f87e061a8882",
+  "fk_policy": "cascade",
+  "seeds": {
+    "chaos": [
+      1
+    ],
+    "randomized": [
+      101
+    ],
+    "long_run": [
+      31415
+    ],
+    "long_run_ops": 100
+  },
+  "core_score": {
+    "axes": {
+      "convergence": true,
+      "uniqueness:users.email": true,
+      "fk": true,
+      "cell-level:u1": true,
+      "cell-level-strict": true,
+      "order-invariance": true,
+      "randomized": true
+    },
+    "weighted_score": 1.0,
+    "max": 1.0
+  },
+  "stretch_score": {
+    "axes": {
+      "composite_uniqueness": true,
+      "multi_level_fk": true,
+      "high_density": true,
+      "long_run": true
+    },
+    "weighted_score": 1.0,
+    "max": 1.0
+  },
+  "l3_final_score": {
+    "value": 1.0,
+    "max": 1.0,
+    "weights": {
+      "core": 0.6,
+      "stretch": 0.4
+    }
+  },
+  "scenarios": [
+    {
+      "scenario": "reference",
+      "duration_ms": 1.3054169830866158,
+      "snapshot_hashes": {
+        "A": "fce34474d60c4f4250e6316dc0dbb77ff1f6ef53fc6a5795e70cb94af00a40e7",
+        "B": "fce34474d60c4f4250e6316dc0dbb77ff1f6ef53fc6a5795e70cb94af00a40e7",
+        "C": "fce34474d60c4f4250e6316dc0dbb77ff1f6ef53fc6a5795e70cb94af00a40e7"
+      },
+      "state_sample": {
+        "orders": [],
+        "users": [
+          {
+            "email": "bob@x.com",
+            "id": "u2",
+            "name": "Bob"
+          },
+          {
+            "email": null,
+            "id": "u3",
+            "name": "Alice2"
+          }
+        ]
+      },
+      "assertions": [
+        {
+          "name": "convergence",
+          "passed": true,
+          "detail": "all peers agree on hash fce34474d60c\u2026"
+        },
+        {
+          "name": "uniqueness:users.email",
+          "passed": true,
+          "detail": "1 live emails, all distinct"
+        },
+        {
+          "name": "fk:cascade",
+          "passed": true,
+          "detail": "o1 cascaded"
+        },
+        {
+          "name": "cell-level:u1",
+          "passed": true,
+          "detail": "u1 absent (cascade) \u2014 vacuously preserved"
+        }
+      ]
+    },
+    {
+      "scenario": "cell-level-strict",
+      "duration_ms": 0.5057909875176847,
+      "snapshot_hashes": {
+        "A": "4a693cff379c667964eb7fc4d00779221999b627b42ed1049f13e6cdeeb87fed",
+        "B": "4a693cff379c667964eb7fc4d00779221999b627b42ed1049f13e6cdeeb87fed",
+        "C": "4a693cff379c667964eb7fc4d00779221999b627b42ed1049f13e6cdeeb87fed"
+      },
+      "state_sample": {
+        "orders": [],
+        "users": [
+          {
+            "email": "alice@ex.org",
+            "id": "u1",
+            "name": "Alice Cooper"
+          },
+          {
+            "email": "bob@x.com",
+            "id": "u2",
+            "name": "Bob"
+          }
+        ]
+      },
+      "assertions": [
+        {
+          "name": "convergence",
+          "passed": true,
+          "detail": "all peers agree on hash 4a693cff379c\u2026"
+        },
+        {
+          "name": "cell-level-strict",
+          "passed": true,
+          "detail": "both concurrent column updates preserved (real cell-level merge)"
+        }
+      ]
+    },
+    {
+      "scenario": "chaos:seed=1",
+      "duration_ms": 0.9952500113286078,
+      "snapshot_hashes": {
+        "A": "fce34474d60c4f4250e6316dc0dbb77ff1f6ef53fc6a5795e70cb94af00a40e7",
+        "B": "fce34474d60c4f4250e6316dc0dbb77ff1f6ef53fc6a5795e70cb94af00a40e7",
+        "C": "fce34474d60c4f4250e6316dc0dbb77ff1f6ef53fc6a5795e70cb94af00a40e7"
+      },
+      "state_sample": {
+        "orders": [],
+        "users": [
+          {
+            "email": "bob@x.com",
+            "id": "u2",
+            "name": "Bob"
+          },
+          {
+            "email": null,
+            "id": "u3",
+            "name": "Alice2"
+          }
+        ]
+      },
+      "assertions": [
+        {
+          "name": "convergence",
+          "passed": true,
+          "detail": "all peers agree on hash fce34474d60c\u2026"
+        },
+        {
+          "name": "order-invariance",
+          "passed": true,
+          "detail": "first canonical hash seed=1"
+        }
+      ]
+    },
+    {
+      "scenario": "randomized:seed=101:peers=4:ops=80",
+      "duration_ms": 9.750832978170365,
+      "snapshot_hashes": {
+        "P0": "901bc435a873d73e81097bde6c848b59e54f8a4f7217fbe64d9ab262f3d9ae60",
+        "P1": "901bc435a873d73e81097bde6c848b59e54f8a4f7217fbe64d9ab262f3d9ae60",
+        "P2": "901bc435a873d73e81097bde6c848b59e54f8a4f7217fbe64d9ab262f3d9ae60",
+        "P3": "901bc435a873d73e81097bde6c848b59e54f8a4f7217fbe64d9ab262f3d9ae60"
+      },
+      "state_sample": {
+        "orders": [],
+        "users": [
+          {
+            "email": null,
+            "id": "u12",
+            "name": "name-68887"
+          },
+          {
+            "email": "e17881@x.com",
+            "id": "u13",
+            "name": "name-322"
+          },
+          {
+            "email": "e697224@x.com",
+            "id": "u14",
+            "name": "name-123"
+          },
+          {
+            "email": "e219072@x.com",
+            "id": "u15",
+            "name": "name-130"
+          },
+          {
+            "email": "e42473@x.com",
+            "id": "u16",
+            "name": "name-49169"
+          }
+        ]
+      },
+      "assertions": [
+        {
+          "name": "convergence",
+          "passed": true,
+          "detail": "all peers agree on hash 901bc435a873\u2026"
+        },
+        {
+          "name": "uniqueness:users.email",
+          "passed": true,
+          "detail": "24 live emails, all distinct"
+        },
+        {
+          "name": "idempotent-sync",
+          "passed": true,
+          "detail": "second sync pass left state unchanged"
+        },
+        {
+          "name": "data-preservation",
+          "passed": true,
+          "detail": "all 33 inserted ids in `users` are accounted for"
+        }
+      ]
+    },
+    {
+      "scenario": "stretch:composite_uniqueness",
+      "duration_ms": 0.8988340268842876,
+      "snapshot_hashes": {
+        "A": "ef39bd50961c15486917f199834ec7bd00d087137e6b9b505b1e2ef7b1436072",
+        "B": "ef39bd50961c15486917f199834ec7bd00d087137e6b9b505b1e2ef7b1436072",
+        "C": "ef39bd50961c15486917f199834ec7bd00d087137e6b9b505b1e2ef7b1436072",
+        "D": "ef39bd50961c15486917f199834ec7bd00d087137e6b9b505b1e2ef7b1436072"
+      },
+      "state_sample": {
+        "memberships": [
+          {
+            "id": "m1",
+            "role": "admin",
+            "team_id": "t1",
+            "user_id": "u1"
+          },
+          {
+            "id": "m3",
+            "role": "guest",
+            "team_id": null,
+            "user_id": null
+          },
+          {
+            "id": "m4",
+            "role": "admin",
+            "team_id": "t1",
+            "user_id": "u2"
+          },
+          {
+            "id": "m5",
+            "role": "member",
+            "team_id": "t2",
+            "user_id": "u1"
+          }
+        ]
+      },
+      "assertions": [
+        {
+          "name": "convergence",
+          "passed": true,
+          "detail": "all peers agree on hash ef39bd50961c\u2026"
+        },
+        {
+          "name": "composite-uniqueness",
+          "passed": true,
+          "detail": "4 live rows, all (user_id, team_id) pairs distinct"
+        },
+        {
+          "name": "data-preservation",
+          "passed": true,
+          "detail": "all 5 inserted ids in `memberships` are accounted for"
+        }
+      ]
+    },
+    {
+      "scenario": "stretch:multi_level_fk",
+      "duration_ms": 1.63687503663823,
+      "snapshot_hashes": {
+        "A": "098a1c8eb4b3e48253d5e41363faff93949b50b66e5c569d802344ad6484ef50",
+        "B": "098a1c8eb4b3e48253d5e41363faff93949b50b66e5c569d802344ad6484ef50",
+        "C": "098a1c8eb4b3e48253d5e41363faff93949b50b66e5c569d802344ad6484ef50"
+      },
+      "state_sample": {
+        "orders": [
+          {
+            "id": "o3",
+            "status": "pending",
+            "total_cents": 4500,
+            "user_id": "u3"
+          }
+        ],
+        "organizations": [
+          {
+            "id": "org2",
+            "name": "Beta"
+          }
+        ],
+        "users": [
+          {
+            "email": "carol@beta.com",
+            "id": "u3",
+            "org_id": "org2"
+          }
+        ]
+      },
+      "assertions": [
+        {
+          "name": "convergence",
+          "passed": true,
+          "detail": "all peers agree on hash 098a1c8eb4b3\u2026"
+        },
+        {
+          "name": "fk-chain-integrity",
+          "passed": true,
+          "detail": "chain consistent \u00b7 1 orgs, 1 users, 1 orders"
+        },
+        {
+          "name": "data-preservation",
+          "passed": true,
+          "detail": "all 2 inserted ids in `organizations` are accounted for"
+        },
+        {
+          "name": "data-preservation",
+          "passed": true,
+          "detail": "all 4 inserted ids in `users` are accounted for"
+        },
+        {
+          "name": "data-preservation",
+          "passed": true,
+          "detail": "all 5 inserted ids in `orders` are accounted for"
+        }
+      ]
+    },
+    {
+      "scenario": "stretch:high_density",
+      "duration_ms": 1.4150830102153122,
+      "snapshot_hashes": {
+        "A": "cf5bc7341b148c6d2c52dfb94b6590c17bd3e60f90c11c17f39741c9515e8dff",
+        "B": "cf5bc7341b148c6d2c52dfb94b6590c17bd3e60f90c11c17f39741c9515e8dff",
+        "C": "cf5bc7341b148c6d2c52dfb94b6590c17bd3e60f90c11c17f39741c9515e8dff",
+        "D": "cf5bc7341b148c6d2c52dfb94b6590c17bd3e60f90c11c17f39741c9515e8dff",
+        "E": "cf5bc7341b148c6d2c52dfb94b6590c17bd3e60f90c11c17f39741c9515e8dff",
+        "F": "cf5bc7341b148c6d2c52dfb94b6590c17bd3e60f90c11c17f39741c9515e8dff"
+      },
+      "state_sample": {
+        "orders": [],
+        "users": [
+          {
+            "email": "g.alice@x.com",
+            "id": "ga",
+            "name": "Alice-G"
+          },
+          {
+            "email": "g.bob@x.com",
+            "id": "gb",
+            "name": "Bob-G"
+          },
+          {
+            "email": "admin@x.com",
+            "id": "ua",
+            "name": "Alice"
+          },
+          {
+            "email": null,
+            "id": "ub",
+            "name": "Bob"
+          },
+          {
+            "email": null,
+            "id": "uc",
+            "name": "Carol"
+          },
+          {
+            "email": null,
+            "id": "ud",
+            "name": "Dave"
+          },
+          {
+            "email": null,
+            "id": "ue",
+            "name": "Eve"
+          },
+          {
+            "email": null,
+            "id": "uf",
+            "name": "Frank"
+          }
+        ]
+      },
+      "assertions": [
+        {
+          "name": "convergence",
+          "passed": true,
+          "detail": "all peers agree on hash cf5bc7341b14\u2026"
+        },
+        {
+          "name": "uniqueness:users.email",
+          "passed": true,
+          "detail": "3 live emails, all distinct"
+        },
+        {
+          "name": "data-preservation",
+          "passed": true,
+          "detail": "all 8 inserted ids in `users` are accounted for"
+        },
+        {
+          "name": "uniqueness-winner",
+          "passed": true,
+          "detail": "single winner for admin@x.com: id=ua"
+        }
+      ]
+    },
+    {
+      "scenario": "stretch:long_run",
+      "duration_ms": 14.560375013388693,
+      "snapshot_hashes": {
+        "P0": "c7bba1b17e4a541abad360afd64e279a7523a325bf92365ddbce0c2f1454c582",
+        "P1": "c7bba1b17e4a541abad360afd64e279a7523a325bf92365ddbce0c2f1454c582",
+        "P2": "c7bba1b17e4a541abad360afd64e279a7523a325bf92365ddbce0c2f1454c582",
+        "P3": "c7bba1b17e4a541abad360afd64e279a7523a325bf92365ddbce0c2f1454c582"
+      },
+      "state_sample": {
+        "orders": [],
+        "users": [
+          {
+            "email": "e572309@x.com",
+            "id": "u0",
+            "name": "name-538"
+          },
+          {
+            "email": "e764858@x.com",
+            "id": "u1",
+            "name": "name-383"
+          },
+          {
+            "email": "e122046@x.com",
+            "id": "u10",
+            "name": "name-298"
+          },
+          {
+            "email": "alice@x.com",
+            "id": "u11",
+            "name": "name-614"
+          },
+          {
+            "email": "e220088@x.com",
+            "id": "u12",
+            "name": "name-37150"
+          },
+          {
+            "email": "e276082@x.com",
+            "id": "u14",
+            "name": "name-710"
+          },
+          {
+            "email": "e364357@x.com",
+            "id": "u15",
+            "name": "name-217"
+          },
+          {
+            "email": null,
+            "id": "u18",
+            "name": "name-839"
+          },
+          {
+            "email": "e599012@x.com",
+            "id": "u19",
+            "name": "name-615"
+          },
+          {
+            "email": null,
+            "id": "u2",
+            "name": "name-639"
+          },
+          {
+            "email": "e248408@x.com",
+            "id": "u20",
+            "name": "name-38"
+          },
+          {
+            "email": "e94804@x.com",
+            "id": "u22",
+            "name": "name-10312"
+          },
+          {
+            "email": null,
+            "id": "u23",
+            "name": "name-90458"
+          },
+          {
+            "email": null,
+            "id": "u24",
+            "name": "name-529"
+          },
+          {
+            "email": "e944108@x.com",
+            "id": "u26",
+            "name": "name-57"
+          },
+          {
+            "email": null,
+            "id": "u27",
+            "name": "name-787"
+          },
+          {
+            "email": null,
+            "id": "u28",
+            "name": "name-18005"
+          },
+          {
+            "email": "e78841@x.com",
+            "id": "u29",
+            "name": "name-460"
+          },
+          {
+            "email": "e555436@x.com",
+            "id": "u3",
+            "name": "name-533"
+          },
+          {
+            "email": null,
+            "id": "u30",
+            "name": "name-554"
+          },
+          {
+            "email": "e895338@x.com",
+            "id": "u31",
+            "name": "name-595"
+          },
+          {
+            "email": "e475698@x.com",
+            "id": "u32",
+            "name": "name-732"
+          },
+          {
+            "email": "e208352@x.com",
+            "id": "u33",
+            "name": "name-493"
+          },
+          {
+            "email": "root@x.com",
+            "id": "u34",
+            "name": "name-313"
+          },
+          {
+            "email": "e756742@x.com",
+            "id": "u35",
+            "name": "name-87062"
+          },
+          {
+            "email": "e523883@x.com",
+            "id": "u36",
+            "name": "name-60788"
+          },
+          {
+            "email": "e971893@x.com",
+            "id": "u37",
+            "name": "name-798"
+          },
+          {
+            "email": "e466930@x.com",
+            "id": "u38",
+            "name": "name-439"
+          },
+          {
+            "email": "e706744@x.com",
+            "id": "u39",
+            "name": "name-951"
+          },
+          {
+            "email": null,
+            "id": "u4",
+            "name": "name-5332"
+          },
+          {
+            "email": "e686572@x.com",
+            "id": "u40",
+            "name": "name-579"
+          },
+          {
+            "email": null,
+            "id": "u41",
+            "name": "name-148"
+          },
+          {
+            "email": "e698090@x.com",
+            "id": "u42",
+            "name": "name-92"
+          },
+          {
+            "email": null,
+            "id": "u43",
+            "name": "name-45"
+          },
+          {
+            "email": "e29717@x.com",
+            "id": "u44",
+            "name": "name-97"
+          },
+          {
+            "email": "e391454@x.com",
+            "id": "u45",
+            "name": "name-433"
+          },
+          {
+            "email": "e90265@x.com",
+            "id": "u46",
+            "name": "name-442"
+          },
+          {
+            "email": "e521901@x.com",
+            "id": "u47",
+            "name": "name-301"
+          },
+          {
+            "email": "e216172@x.com",
+            "id": "u48",
+            "name": "name-756"
+          },
+          {
+            "email": "e238276@x.com",
+            "id": "u49",
+            "name": "name-521"
+          },
+          {
+            "email": null,
+            "id": "u5",
+            "name": "name-765"
+          },
+          {
+            "email": "e619483@x.com",
+            "id": "u50",
+            "name": "name-329"
+          },
+          {
+            "email": "e9867@x.com",
+            "id": "u51",
+            "name": "name-210"
+          },
+          {
+            "email": null,
+            "id": "u52",
+            "name": "name-38839"
+          },
+          {
+            "email": null,
+            "id": "u53",
+            "name": "name-536"
+          },
+          {
+            "email": "admin@x.com",
+            "id": "u54",
+            "name": "name-325"
+          },
+          {
+            "email": null,
+            "id": "u55",
+            "name": "name-939"
+          },
+          {
+            "email": "e315650@x.com",
+            "id": "u56",
+            "name": "name-636"
+          },
+          {
+            "email": "e467770@x.com",
+            "id": "u57",
+            "name": "name-154"
+          },
+          {
+            "email": "e137315@x.com",
+            "id": "u58",
+            "name": "name-955"
+          },
+          {
+            "email": "e11014@x.com",
+            "id": "u59",
+            "name": "name-456"
+          },
+          {
+            "email": null,
+            "id": "u6",
+            "name": "name-86"
+          },
+          {
+            "email": "e542376@x.com",
+            "id": "u60",
+            "name": "name-318"
+          },
+          {
+            "email": "e56672@x.com",
+            "id": "u61",
+            "name": "name-199"
+          },
+          {
+            "email": "e997836@x.com",
+            "id": "u62",
+            "name": "name-123"
+          },
+          {
+            "email": "e327723@x.com",
+            "id": "u63",
+            "name": "name-352"
+          },
+          {
+            "email": null,
+            "id": "u64",
+            "name": "name-194"
+          },
+          {
+            "email": "e1265@x.com",
+            "id": "u7",
+            "name": "name-348"
+          },
+          {
+            "email": "e979399@x.com",
+            "id": "u8",
+            "name": "name-654"
+          },
+          {
+            "email": "e45888@x.com",
+            "id": "u9",
+            "name": "name-931"
+          }
+        ]
+      },
+      "assertions": [
+        {
+          "name": "convergence",
+          "passed": true,
+          "detail": "all peers agree on hash c7bba1b17e4a\u2026"
+        },
+        {
+          "name": "uniqueness:users.email",
+          "passed": true,
+          "detail": "44 live emails, all distinct"
+        },
+        {
+          "name": "data-preservation",
+          "passed": true,
+          "detail": "all 65 inserted ids in `users` are accounted for"
+        }
+      ]
+    }
+  ]
+}
