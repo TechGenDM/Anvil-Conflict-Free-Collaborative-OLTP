@@ -6,6 +6,10 @@
 > `l3_version: anvil-2026-p01-L3-final` · `adapter: adapters.ourteam:Engine` · `fk_policy: cascade`  
 > Run timestamp: `2026-05-16T09:30:14+0530` · Adapter SHA-256: `c5a197fc022be8634d5541d5504f0acbf10b7198fe49f87e061a8882`
 
+<div align="center">
+  <img src="Image.png" alt="Anvil CRDT Desktop App UI" width="800"/>
+  <p><i>The Anvil CRDT Desktop App — Interactive Playground and Benchmark Dashboard</i></p>
+</div>
 ## L3 Benchmark Results
 
 ### Final Score
