@@ -29,3 +29,6 @@ report.json
 !.env.example
 *.pem
 *.key
+
+--out
+.DS_Store
